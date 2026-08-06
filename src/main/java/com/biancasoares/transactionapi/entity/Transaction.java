@@ -1,6 +1,7 @@
 package com.biancasoares.transactionapi.entity;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -20,18 +21,20 @@ public class Transaction {
 
     private LocalDate date;
 
-
     public Transaction() {
     }
 
-
-    public Transaction(String description, BigDecimal amount, String category, LocalDate date) {
+    public Transaction(
+            String description,
+            BigDecimal amount,
+            String category,
+            LocalDate date
+    ) {
         this.description = description;
         this.amount = amount;
         this.category = category;
         this.date = date;
     }
-
 
     public Long getId() {
         return id;
@@ -51,5 +54,21 @@ public class Transaction {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }
