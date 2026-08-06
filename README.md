@@ -13,8 +13,8 @@ REST API for managing financial transactions.
 
 ## Features
 
-- Create transactions
-- List all transactions
+- Create transactions ✅      
+- List all transactions ✅
 - Get transaction by ID (in progress)
-- Update transactions (planned)
-- Delete transactions (planned)
+- Update transactions ✅
+- Delete transactions ✅
