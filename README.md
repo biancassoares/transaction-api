@@ -1,29 +1,29 @@
 # 💳 Transaction API
 
-REST API developed with **Java and Spring Boot** as part of my backend development studies.
+API REST desenvolvida com **Java e Spring Boot** como parte dos meus estudos de desenvolvimento backend.
 
-I started this project as a simple transaction CRUD and then improved it step by step while learning more about how a REST API can be structured.
+Comecei esse projeto como um CRUD simples de transações e fui melhorando aos poucos conforme estudava novos conceitos e entendia melhor como uma API REST pode ser estruturada.
 
-## 🚀 About the project
+## 🚀 Sobre o projeto
 
-The API allows users to:
+A API permite:
 
-* Create a transaction
-* List all transactions
-* Find a transaction by ID
-* Update a transaction
-* Delete a transaction
+* Criar uma transação
+* Listar todas as transações
+* Buscar uma transação por ID
+* Atualizar uma transação
+* Deletar uma transação
 
-Besides the basic CRUD operations, I also added some concepts that I have been studying with Spring Boot:
+Além das operações básicas de CRUD, também implementei alguns conceitos que venho estudando com Spring Boot:
 
-* Request and response DTOs
-* Data validation
-* Global exception handling
-* Custom exception for transactions that are not found
-* Unit tests with JUnit and Mockito
-* API documentation with Swagger/OpenAPI
+* DTOs de entrada e saída
+* Validação de dados
+* Tratamento global de exceções
+* Exceção personalizada para transações não encontradas
+* Testes unitários com JUnit e Mockito
+* Documentação da API com Swagger/OpenAPI
 
-## 🛠️ Technologies
+## 🛠️ Tecnologias utilizadas
 
 * Java 21
 * Spring Boot
@@ -37,9 +37,9 @@ Besides the basic CRUD operations, I also added some concepts that I have been s
 * Swagger / OpenAPI
 * Maven
 
-## 📦 Transaction structure
+## 📦 Estrutura da Transaction
 
-Each transaction contains:
+Cada transação possui:
 
 * `id`
 * `description`
@@ -49,49 +49,58 @@ Each transaction contains:
 
 ## 🔗 Endpoints
 
-| Method   | Endpoint             | Description              |
-| -------- | -------------------- | ------------------------ |
-| `POST`   | `/transactions`      | Create a transaction     |
-| `GET`    | `/transactions`      | List all transactions    |
-| `GET`    | `/transactions/{id}` | Find a transaction by ID |
-| `PUT`    | `/transactions/{id}` | Update a transaction     |
-| `DELETE` | `/transactions/{id}` | Delete a transaction     |
+| Método   | Endpoint             | Descrição                   |
+| -------- | -------------------- | --------------------------- |
+| `POST`   | `/transactions`      | Criar uma transação         |
+| `GET`    | `/transactions`      | Listar todas as transações  |
+| `GET`    | `/transactions/{id}` | Buscar uma transação por ID |
+| `PUT`    | `/transactions/{id}` | Atualizar uma transação     |
+| `DELETE` | `/transactions/{id}` | Deletar uma transação       |
 
 ## 📤 DTOs
 
-To avoid using the `Transaction` entity directly in requests and responses, I created:
+Para evitar o uso direto da entidade `Transaction` nas requisições e respostas da API, criei:
 
-* `TransactionRequest` for data received by the API
-* `TransactionResponse` for data returned by the API
+* `TransactionRequest` para os dados recebidos
+* `TransactionResponse` para os dados retornados
 
-The flow is basically:
+O fluxo funciona de forma simplificada assim:
 
 ```text
-JSON → TransactionRequest → Transaction → Database
+JSON → TransactionRequest → Transaction → Banco de dados
 
-Database → Transaction → TransactionResponse → JSON
+Banco de dados → Transaction → TransactionResponse → JSON
 ```
 
-## ✅ Validation
+## ✅ Validação
 
-The data received by the API is validated before being saved.
+Os dados recebidos pela API são validados antes de serem salvos.
 
-Some of the validation rules are:
+Algumas das regras implementadas são:
 
-* Description is required
-* Amount is required and must be greater than zero
-* Category is required
-* Date is required
+* Descrição obrigatória
+* Valor obrigatório e maior que zero
+* Categoria obrigatória
+* Data obrigatória
 
-When invalid data is sent, the API returns `400 Bad Request` with messages showing which fields are invalid.
+Quando algum dado inválido é enviado, a API retorna `400 Bad Request` com mensagens indicando quais campos precisam ser corrigidos.
 
-## ⚠️ Exception handling
+Exemplo:
 
-I created a `GlobalExceptionHandler` to centralize error handling in the application.
+```json
+{
+  "description": "Description is required",
+  "amount": "Amount must be greater than zero"
+}
+```
 
-I also created a custom `TransactionNotFoundException`, which is used when a transaction cannot be found.
+## ⚠️ Tratamento de exceções
 
-In this case, the API returns:
+Criei um `GlobalExceptionHandler` para centralizar o tratamento dos erros da aplicação.
+
+Também criei uma exceção personalizada chamada `TransactionNotFoundException`, utilizada quando uma transação não é encontrada.
+
+Nesse caso, a API retorna:
 
 ```json
 {
@@ -99,40 +108,40 @@ In this case, the API returns:
 }
 ```
 
-with status:
+com status:
 
 ```text
 404 Not Found
 ```
 
-## 🧪 Tests
+## 🧪 Testes
 
-I created unit tests for the `TransactionService` using **JUnit and Mockito**.
+Criei testes unitários para o `TransactionService` utilizando **JUnit e Mockito**.
 
-The main scenarios tested are:
+Os principais cenários testados foram:
 
-* Finding an existing transaction
-* Trying to find a transaction that does not exist
-* Creating a transaction
-* Listing transactions
-* Updating a transaction
-* Deleting a transaction
+* Buscar uma transação existente
+* Buscar uma transação que não existe
+* Criar uma transação
+* Listar transações
+* Atualizar uma transação
+* Deletar uma transação
 
-Mockito is used to mock the repository, so the service can be tested without connecting to the real database.
+O Mockito foi utilizado para simular o repository, permitindo testar a lógica do service sem precisar acessar o banco de dados real.
 
 ## 📚 Swagger
 
-I also added API documentation using Swagger/OpenAPI.
+Também adicionei documentação da API utilizando Swagger/OpenAPI.
 
-With the application running, the Swagger interface is available at:
+Com a aplicação rodando, a interface do Swagger pode ser acessada em:
 
 ```text
 http://localhost:8080/swagger-ui.html
 ```
 
-## 🗂️ Project structure
+## 🗂️ Estrutura do projeto
 
-The project follows a layered structure:
+O projeto segue uma arquitetura em camadas:
 
 ```text
 Controller
@@ -141,10 +150,10 @@ Service
    ↓
 Repository
    ↓
-Database
+Banco de dados
 ```
 
-The application is organized into packages such as:
+A aplicação também está organizada em packages como:
 
 ```text
 controller
@@ -155,10 +164,10 @@ dto
 exception
 ```
 
-## 🎯 Purpose
+## 🎯 Objetivo
 
-This project was created as part of my **Java and Spring Boot studies**.
+Esse projeto foi desenvolvido como parte dos meus estudos de **Java e Spring Boot**.
 
-My goal was to start with a simple CRUD and improve it little by little while practicing concepts such as DTOs, validation, exception handling, testing and API documentation.
+Meu objetivo foi começar com um CRUD simples e evoluir o projeto aos poucos, praticando conceitos como DTOs, validação, tratamento de exceções, testes e documentação de APIs.
 
-It was also a way for me to practice organizing a backend project and better understand the responsibility of each layer in a Spring Boot application.
+Também utilizei o projeto para entender melhor a responsabilidade de cada camada e como organizar uma aplicação backend de forma mais clara.
