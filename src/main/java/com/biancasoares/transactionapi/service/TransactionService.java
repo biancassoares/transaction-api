@@ -110,8 +110,7 @@ public class TransactionService { //declara o service
     public void delete(Long id) {//recebe o ID q sera apagado
 
         Transaction existingTransaction = repository.findById(id) //procura a id
-                .orElseThrow(() -> new ResponseStatusException( //se nao existe lanca um erro
-                        HttpStatus.NOT_FOUND,
+                .orElseThrow(() -> new TransactionNotFoundException(
                         "Transaction not found"
                 ));
 
