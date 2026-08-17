@@ -171,3 +171,7 @@ Esse projeto foi desenvolvido como parte dos meus estudos de **Java e Spring Boo
 Meu objetivo foi começar com um CRUD simples e evoluir o projeto aos poucos, praticando conceitos como DTOs, validação, tratamento de exceções, testes e documentação de APIs.
 
 Também utilizei o projeto para entender melhor a responsabilidade de cada camada e como organizar uma aplicação backend de forma mais clara.
+
+---
+
+Até o próximo projeto 👋
